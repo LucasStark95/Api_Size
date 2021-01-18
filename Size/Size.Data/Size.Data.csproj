@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="EFCore\Repositorios\" />
     <Folder Include="Migrations\" />
   </ItemGroup>
 
