@@ -1,0 +1,13 @@
+{
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ],
+  "ConnectionStrings": {
+    "Size": "Username=postgres;Password=postzeus2011;Host=localhost;Port=5432;Database=Size"
+  }
+}
