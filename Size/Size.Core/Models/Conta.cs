@@ -10,5 +10,8 @@ namespace Size.Core.Models
         public int Agencia { get; set; }
         public double Saldo { get; set; }
         public TipoEnum Tipo { get; set; }
+
+        public int ClienteId { get; set; }
+        public Cliente Cliente { get; set; }
     }
 }
