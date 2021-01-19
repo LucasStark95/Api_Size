@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json;
 using Size.Api.Helpers;
 using Size.Core.Models;
 using Size.Data.EFCore.Context;
@@ -85,7 +86,7 @@ namespace Size.Api
             });
 
             services.AddControllers()
-                .AddNewtonsoftJson()
+                .AddNewtonsoftJson(x => x.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
                 .ConfigureApiBehaviorOptions(options =>
                 {
                     options.InvalidModelStateResponseFactory = _ =>
@@ -97,6 +98,7 @@ namespace Size.Api
                         return result;
                     };
                 });
+
             services.AddAuthentication(option =>
             {
                 option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Size.Api.Helpers;
 using Size.Core.Models;
+using Size.Core.Request;
 using Size.Data.EFCore.Repositorios;
 using System.Threading.Tasks;
 
@@ -23,13 +24,12 @@ namespace Size.Api.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> CreateToken([FromBody] Login login)
+        public async Task<IActionResult> CreateToken(Login login)
         {
             if (login == null) return Unauthorized();
-            
-            var tokenString = string.Empty;
-
             var validUser = await Authenticate(login);
+
+            string tokenString;
             if (validUser)
             {
                 tokenString = TokenHandler.BuildJWTToken(_apiSettings);
