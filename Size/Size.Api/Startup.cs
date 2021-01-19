@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -6,8 +7,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Size.Api.Helpers;
+using Size.Core.Models;
 using Size.Data.EFCore.Context;
 using Size.Data.EFCore.Helpers;
 using Size.Data.EFCore.Repositorios;
@@ -18,6 +21,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mime;
 using System.Reflection;
+using System.Text;
 
 namespace Size.Api
 {
@@ -54,6 +58,7 @@ namespace Size.Api
         {
             services = ConfigureServer(services);
             services = ConfigureData(services);
+            services = ConfigureAppSettings(services);
            
             services.AddHttpClient();
 
@@ -92,6 +97,24 @@ namespace Size.Api
                         return result;
                     };
                 });
+            services.AddAuthentication(option =>
+            {
+                option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = false,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = Configuration["ApiSettings:Issuer"],
+                    ValidAudience = Configuration["ApiSettings:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["ApiSettings:Secret"]))
+                };
+            });
         }
 
         /// <summary>
@@ -117,6 +140,10 @@ namespace Size.Api
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
@@ -136,6 +163,19 @@ namespace Size.Api
             {
                 options.AllowSynchronousIO = true;
             });
+
+            return services;
+        }
+
+        private IServiceCollection ConfigureAppSettings(IServiceCollection services)
+        {
+            var appSettings = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            var appSettingsSection = appSettings.GetSection("ApiSettings");
+
+            services.Configure<ApiSettings>(appSettingsSection);
 
             return services;
         }
