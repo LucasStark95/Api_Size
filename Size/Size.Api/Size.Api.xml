@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Size.Api</name>
+    </assembly>
+    <members>
+        <member name="T:Size.Api.Helpers.InjectionHelper">
+            <summary>
+            Injection Helper.
+            Classe auxiliar para a injeção de dependeência.
+            </summary>
+        </member>
+        <member name="M:Size.Api.Helpers.InjectionHelper.IsSubclassOfRawGeneric(System.Type,System.Type)">
+            <summary>
+            Verifica se o tipo genérico é compatível com o tipo base
+            </summary>
+            <param name="generic"></param>
+            <param name="toCheck"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Size.Api.Startup">
+            <summary>
+            Statup.
+            Classe Responsavel pela inicialização da API.
+            </summary>
+        </member>
+        <member name="P:Size.Api.Startup.Configuration">
+            <summary>
+            Configurações da aplicação.
+            </summary>
+        </member>
+        <member name="P:Size.Api.Startup.CurrentEnvironment">
+            <summary>
+            Variável de ambiente.
+            </summary>
+        </member>
+        <member name="M:Size.Api.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            COnstrutor da Classe.
+            </summary>
+            <param name="configuration"></param>
+            <param name="env"></param>
+        </member>
+        <member name="M:Size.Api.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Método de definições e configurações dos serviços.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:Size.Api.Startup.Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            Método de definições e configurações do APP.
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+        </member>
+    </members>
+</doc>
