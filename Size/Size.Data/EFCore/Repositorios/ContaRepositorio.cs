@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Size.Core.Models;
+using Size.Data.EFCore.Context;
 using System;
 using System.Threading.Tasks;
 
@@ -7,15 +8,12 @@ namespace Size.Data.EFCore.Repositorios
 {
     public class ContaRepositorio : RepositorioBase<Conta>
     {
-        public ContaRepositorio(DbContext contexto) : base(contexto)
+        public ContaRepositorio(Contexto contexto) : base(contexto)
         {
         }
 
         public async Task<Conta> DepositaAsync(int idCliente, double valor)
         {
-
-            ValidateValue(valor);
-
             var contaDb = await GetContaAsync(idCliente);
 
             ValidateConta(contaDb);
@@ -29,8 +27,6 @@ namespace Size.Data.EFCore.Repositorios
 
         public async Task<Conta> SaqueAsync(int idCliente, double valor)
         {
-            ValidateValue(valor);
-
             var contaDb = await GetContaAsync(idCliente);
 
             ValidateConta(contaDb);
@@ -53,8 +49,6 @@ namespace Size.Data.EFCore.Repositorios
         {
             try
             {
-                ValidateValue(valor);
-
                 await SaqueAsync(idCliente, valor);
                 await DepositaAsync(idClienteDestino, valor);
 
@@ -69,11 +63,6 @@ namespace Size.Data.EFCore.Repositorios
         private async Task<Conta> GetContaAsync(int idCliente)
         {
             return await Buscar(c => c.ClienteId == idCliente).FirstOrDefaultAsync();
-        }
-
-        private void ValidateValue(double valor)
-        {
-            if (valor < 0) throw new Exception("Valor não permitido.");
         }
 
         private void ValidateConta(Conta conta)
