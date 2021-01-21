@@ -49,10 +49,16 @@ namespace Size.Data.EFCore.Repositorios
         {
             try
             {
-                await SaqueAsync(idCliente, valor);
-                await DepositaAsync(idClienteDestino, valor);
+                
+                var conta = await SaqueAsync(idCliente, valor);
+                if(conta != null)
+                {
+                    var transf = await DepositaAsync(idClienteDestino, valor);
+                    return transf != null;
+                }
 
-                return true;
+                return false;
+                
             }
             catch
             {

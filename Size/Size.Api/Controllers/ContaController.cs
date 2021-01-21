@@ -21,7 +21,7 @@ namespace Size.Api.Controllers
 
         [HttpPost]
         [Route("api/conta/deposito")]
-        public async Task<IActionResult> DepositaContaAsync(MovementRequest deposito)
+        public async Task<IActionResult> DepositaContaAsync([FromBody] MovementRequest deposito)
         {
             var clienteDB = await GetClienteDbAsync(deposito.Documento);
             
@@ -36,7 +36,7 @@ namespace Size.Api.Controllers
 
         [HttpPost]
         [Route("api/conta/saque")]
-        public async Task<IActionResult> SaqueContaAsync(MovementRequest saque)
+        public async Task<IActionResult> SaqueContaAsync([FromBody] MovementRequest saque)
         {
             var clienteDB = await GetClienteDbAsync(saque.Documento);
 
@@ -51,7 +51,7 @@ namespace Size.Api.Controllers
 
         [HttpPost]
         [Route("api/conta/transferencia")]
-        public async Task<IActionResult> TransferenciaContaAsync(TransactionRequest transacao)
+        public async Task<IActionResult> TransferenciaContaAsync([FromBody] TransactionRequest transacao)
         {
             var clienteRt = await GetClienteDbAsync(transacao.Remetente);
             var clienteDt = await GetClienteDbAsync(transacao.Destinatario);
@@ -66,7 +66,7 @@ namespace Size.Api.Controllers
         }
 
         [HttpGet]
-        [Route("api/conta/extrato/{documento:string}")]
+        [Route("api/conta/extrato/{documento}")]
         public async Task<IActionResult> ExtratoContaAsync(string documento)
         {
             var cliente = await GetClienteDbAsync(documento);

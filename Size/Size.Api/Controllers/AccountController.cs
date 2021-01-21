@@ -24,7 +24,7 @@ namespace Size.Api.Controllers
 
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> CreateToken(Login login)
+        public async Task<IActionResult> CreateToken([FromBody]Login login)
         {
             if (login == null) return Unauthorized();
             var validUser = await Authenticate(login);

@@ -20,7 +20,7 @@ namespace Size.Api.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<Cliente> CreateCliente(Cliente cliente)
+        public async Task<Cliente> CreateCliente([FromBody]Cliente cliente)
         {
             if (cliente.Conta == null)
                 cliente.Conta = new Conta();

@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Size.Core", "Size.Core\Size
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Size.Data", "Size.Data\Size.Data.csproj", "{CC6D82B9-D98C-4587-8C0C-DB643C5A1695}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Size.Api", "Size.Api\Size.Api.csproj", "{63E8CCFB-CDC5-4418-8CEA-08EA814526CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Size.Api", "Size.Api\Size.Api.csproj", "{63E8CCFB-CDC5-4418-8CEA-08EA814526CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Size.Testes", "Size.Testes\Size.Testes.csproj", "{00E654A1-CED3-46D5-ABB5-2ECA7BD9729F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{63E8CCFB-CDC5-4418-8CEA-08EA814526CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63E8CCFB-CDC5-4418-8CEA-08EA814526CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63E8CCFB-CDC5-4418-8CEA-08EA814526CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00E654A1-CED3-46D5-ABB5-2ECA7BD9729F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00E654A1-CED3-46D5-ABB5-2ECA7BD9729F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00E654A1-CED3-46D5-ABB5-2ECA7BD9729F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00E654A1-CED3-46D5-ABB5-2ECA7BD9729F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
