@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>D:\Usuario\Documents\SIZE\Size\Size.Api\Size.Api.xml</DocumentationFile>
+    <DocumentationFile>C:\Users\Pichau\Documents\Api_Size\Size\Size.Api.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

@@ -8,6 +8,6 @@
     "**/platforms"
   ],
   "ConnectionStrings": {
-    "Size": "Username=postgres;Password=postzeus2011;Host=localhost;Port=5432;Database=Size"
+    "Size": "Username=postgres;Password=lp1995lp;Host=localhost;Port=5432;Database=Testes"
   }
 }

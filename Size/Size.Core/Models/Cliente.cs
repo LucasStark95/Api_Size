@@ -1,4 +1,5 @@
 ﻿using Size.Core.Interfaces;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Size.Core.Models
@@ -10,6 +11,8 @@ namespace Size.Core.Models
         public string Nome { get; set; }
         [Required]
         public string Documento { get; set; }
+        public decimal Saldo { get; set; }
+        public DateTimeOffset UltimaAtualizacao { get; set; }
         public Conta Conta { get; set; }
     }
 }
